@@ -19,7 +19,7 @@ def save_path(name):
     return os.path.join(IMG_PATH, name)
 
 
-# R&B per capita vs inflation
+R&B per capita vs inflation
 
 per_capita = pd.read_csv(PER_CAPITA_PATH, delimiter=';')
 years = per_capita["year"].tolist()
@@ -86,6 +86,31 @@ plt.show()
 
 # per sectors
 sectors = ["Sektor przedsiębiorstw (BES)", "Sektor rządowy (GOV)", "Sektor szkolnictwa wyższego (HES)", "Sektor prywatnych instytucji niekomercyjnych (PNP)"]
+pkb = pd.read_csv(SECTORS_PATH, delimiter=';')
+years = ["2020", "2021", "2022"]
+for sector in sectors:
+    values = pkb.where(pkb["sector"] == sector).dropna()["value"].tolist()
+    plt.plot(years, values, label=sector)
+plt.title("Wydatki na R&D w różnych sektorach")
+plt.xlabel("Rok")
+plt.ylabel("W [zł]")
+plt.legend()
+plt.savefig(save_path("sectors"))
+plt.show()
 
+
+for sector in sectors:
+    values = pkb.where(pkb["sector"] == sector).dropna()["value"].tolist()
+    values = [1] + [new/last for new, last in zip(values[1:], values)]
+    values = [elem * 100 - 100 for elem in values]
+    plt.plot(years, values, label=sector)
+inflation = INFLATION_VALUES[-3:]
+plt.plot(years, inflation, label="inflation")
+plt.title("Wydatki na R&D w różnych sektorach")
+plt.xlabel("Rok")
+plt.ylabel("W [%]")
+plt.legend()
+plt.savefig(save_path("sectors_vs_inflation"))
+plt.show()
 
 
