@@ -106,7 +106,7 @@ for sector in sectors:
     plt.plot(years, values, label=sector)
 inflation = INFLATION_VALUES[-3:]
 plt.plot(years, inflation, label="inflation")
-plt.title("Wydatki na R&D w różnych sektorach")
+plt.title("WWzrost wydatków na R&D w różnych sektorach")
 plt.xlabel("Rok")
 plt.ylabel("W [%]")
 plt.legend()
