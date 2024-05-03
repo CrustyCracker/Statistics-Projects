@@ -19,13 +19,13 @@ def save_path(name):
     return os.path.join(IMG_PATH, name)
 
 
-R&B per capita vs inflation
+# R&B per capita vs inflation
 
 per_capita = pd.read_csv(PER_CAPITA_PATH, delimiter=';')
 years = per_capita["year"].tolist()
 values = per_capita["value"].tolist()
 plt.plot(years, values)
-plt.title("Nakłady na rozwój i działalnośc badawczą w latach 1999-2022")
+plt.title("Nakłady na R&B w latach 1999-2022")
 plt.xlabel("Rok")
 plt.ylabel("w [zł] na mieszkańca")
 plt.savefig(save_path("nakłady_per_capita"))
