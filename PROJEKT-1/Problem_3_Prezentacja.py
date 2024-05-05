@@ -30,7 +30,7 @@ plt.legend()
 plt.savefig(save_path("inflacja_vs_dług"))
 plt.show()
 
-ratio = [deb/inc for deb, inc in zip(debt_values, income_value)]
+ratio = [deb/inc * 100 for deb, inc in zip(debt_values, income_value)]
 plt.plot(years, ratio, label="Stosunek Długu do Dochodu")
 plt.title("Stosunek Długu do Dochodu")
 plt.xlabel("Lata")
