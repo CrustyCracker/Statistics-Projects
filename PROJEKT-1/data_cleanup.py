@@ -1,15 +1,21 @@
 import os
 
-RAW_PATH = os.path.join(os.getcwd(), "data", "task2", "raw")
-CLEAN_PATH = os.path.join(os.getcwd(), "data", "task2", "cleaned")
+TASK = 4
+RAW_PATH = os.path.join(os.getcwd(), "data", "task_3", "raw")
+CLEAN_PATH = os.path.join(os.getcwd(), "data", "task_3", "cleaned")
 
 PER_CAPITA_PATH = "R&D_per_capita.csv"
 PKB_PATH = "R&D_PKB.csv"
 SECTORS_PATH = "R&D_sectors.csv"
-FILES = ["R&D_per_capita.csv", "R&D_PKB.csv", "R&D_sectors.csv"]
+if TASK == 2:
+    FILES = ["R&D_per_capita.csv", "R&D_PKB.csv", "R&D_sectors.csv"]
+elif TASK == 3:
+    FILES = ["Debt.csv", "Income.csv"]
+else:
+    FILES = ["PKB.csv"]
 
 PATH = PKB_PATH
-BLOCK = True  # to prevent random data loss
+BLOCK = False  # to prevent random data loss
 
 if BLOCK:
     exit()
@@ -18,8 +24,8 @@ for file in FILES:
     path = os.path.join(RAW_PATH, file)
     with open(path, "r") as h:
         data = h.readlines()
-        if data[0][3:5] != "id":
-            continue
+        # if data[0][3:5] != "id":
+        #     continue
 
     mask = [set() for _ in data[1].split(";")]
     for line in data[1:]:
